@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BorderBarView">
+        <attr name="bar_fill_color" format="color" />
+        <attr name="bar_border_color" format="color" />
+        <attr name="bar_stack_orientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

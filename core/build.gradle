@@ -1,0 +1,90 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdkVersion Versions.COMPILE_SDK
+    buildToolsVersion Versions.BUILD_TOOL
+
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
+        versionCode Versions.CODE
+        versionName Versions.NAME
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation Root.KOTLIN_STD_LIB
+
+    implementation Google.KTX_CORE
+    implementation Google.APP_COMPAT
+    implementation Google.CONSTRAINT_LAYOUT
+    implementation Google.FLEX_BOX_LAYOUT
+    implementation Google.SECURITY_CRYPTO
+    implementation Google.MULTIDEX
+    implementation Google.BROADCAST_MANAGER
+    implementation Google.NAVIGATION_FRAGMENT
+    implementation Google.NAVIGATION_UI
+    implementation Google.MATERIAL
+    implementation Google.ROOM
+    implementation Google.ROOM_KTX
+    implementation Google.ROOM_RXJAVA2
+    kapt Google.ROOM_COMPILER
+
+    implementation Koin.ANDROID
+    implementation Koin.SCOPE
+    implementation Koin.VIEWMODEL
+
+    implementation RxJava.ANDROID_FOR_ROOM
+    implementation RxJava.CORE_FOR_ROOM
+    implementation RxJava.KOTLIN_FOR_ROOM
+
+    implementation Retrofit.CORE
+    implementation Retrofit.RXJAVA2
+    implementation Retrofit.MOSHI
+    implementation Retrofit.OKHTTP_INTERCEPTOR
+
+    implementation Moshi.MOSHI_CORE
+
+    implementation Glide.PALLETE
+    implementation Glide.CORE
+    kapt Glide.COMPILER
+
+    implementation Utils.MATERIAL_DIALOG
+    implementation Utils.TIMBER
+
+    implementation Firebase.ANALYTICS
+    implementation Firebase.CRASHLYTICS
+
+    testImplementation TestDep.JUNIT
+
+    androidTestImplementation AndroidTestDep.JUNIT
+    androidTestImplementation AndroidTestDep.ESPRESSO
+}

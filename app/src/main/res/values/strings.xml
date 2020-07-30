@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyPokedex</string>
+    <string name="number_format">#%03d</string>
+    <string name="weight_format">%.1f G</string>
+    <string name="height_format">%.1f M</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="stat_hp">HP</string>
+    <string name="stat_atk">ATK</string>
+    <string name="stat_def">DEF</string>
+    <string name="stat_spd">SPD</string>
+    <string name="stat_exp">EXP</string>
+
+    <string name="transition_name_tv_pokemon_name">tvPokemon%1$s</string>
+    <string name="transition_name_iv_pokemon">ivPokemon%1$s</string>
+    <string name="transition_name_iv_palette">ivPalette%1$s</string>
+</resources>

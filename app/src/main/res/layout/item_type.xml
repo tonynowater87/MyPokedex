@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.tonynowater.mypokedex.detail.utils.TypeToColorUtil" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="typeName"
+            type="String" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/view_width_pokemon_type"
+        android:layout_height="@dimen/view_height_pokemon_type"
+        app:cardBackgroundColor="@{TypeToColorUtil.INSTANCE.typeToColor(typeName)}"
+        app:cardCornerRadius="@dimen/type_corner_radius"
+        app:cardElevation="0dp"
+        app:inVisible="@{TextUtils.isEmpty(typeName)}"
+        tools:cardBackgroundColor="@color/colorAccent">
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Tooltip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{typeName}"
+            tools:text="Type Name" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

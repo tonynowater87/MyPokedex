@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- see more in -->
+<!-- https://medium.com/@samstern_58566/how-to-use-firebase-on-android-without-the-google-services-plugin-93ecc7dc6c4  -->
+<resources>
+    <!-- TODO add values from google.json file -->
+    <!-- mobilesdk_app_id -->
+    <string name="google_app_id" translatable="false"></string>
+    <!-- client_id -->
+    <string name="default_web_client_id" translatable="false"></string>
+    <!-- firebase_url -->
+    <string name="firebase_database_url" translatable="false"></string>
+    <!-- current_key -->
+    <string name="google_api_key" translatable="false"></string>
+    <!-- current_key -->
+    <string name="google_crash_reporting_api_key" translatable="false"></string>
+    <!-- project_id -->
+    <string name="project_id" translatable="false"></string>
+    <!-- project_number -->
+    <string name="gcm_defaultSenderId" translatable="false"></string>
+
+    <string name="ga_trackingId" translatable="false"></string>
+</resources>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.tonynowater.mypokedex.detail.PokemonDetailViewModel" />
+
+        <variable
+            name="model"
+            type="com.tonynowater.mypokedex.detail.uiModel.PokemonDetailModel" />
+
+        <variable
+            name="pokemonName"
+            type="String" />
+
+        <variable
+            name="pokemonImageUrl"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_grey">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivRounded"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/ivPokemon"
+            android:layout_width="@dimen/image_size_detail_landscape"
+            android:layout_height="@dimen/image_size_detail_landscape"
+            android:layout_marginTop="@dimen/margin_padding_size_large"
+            app:changeStatusBarColor="@{true}"
+            app:fullRounded="@{false}"
+            app:imageUrl="@{pokemonImageUrl}"
+            app:isPortrait="@{false}"
+            app:layout_constraintEnd_toEndOf="@id/ivRounded"
+            app:layout_constraintStart_toStartOf="@id/ivRounded"
+            app:layout_constraintTop_toTopOf="@id/ivRounded"
+            app:paletteView="@{ivRounded}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> vm.back()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/abc_vector_test"
+            app:subtitle="@{@string/number_format(model.id)}"
+            app:subtitleTextColor="@color/white"
+            app:title="@{@string/app_name}"
+            app:titleTextColor="@color/white"
+            tools:subtitle="TEST" />
+
+        <TextView
+            android:id="@+id/tvPokemonName"
+            style="@style/TextAppearance.MaterialComponents.Headline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_size_small"
+            android:text="@{pokemonName}"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/rvTypes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ivRounded"
+            app:layout_constraintTop_toBottomOf="@id/ivPokemon"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Pokemon Name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTypes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_size_small"
+            app:layout_constraintBottom_toTopOf="@+id/tvWeightValue"
+            app:layout_constraintEnd_toEndOf="@id/ivRounded"
+            app:layout_constraintStart_toStartOf="@id/ivRounded"
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonName"
+            app:types="@{model.type}"
+            tools:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            tools:layout_height="40dp"
+            tools:listitem="@layout/item_type" />
+
+        <TextView
+            android:id="@+id/tvWeightValue"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/weight_format(model.weight)}"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvWeight"
+            app:layout_constraintEnd_toStartOf="@id/tvHeightValue"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/ivRounded"
+            app:layout_constraintTop_toBottomOf="@+id/rvTypes"
+            tools:text="5.5 KG" />
+
+        <TextView
+            android:id="@+id/tvWeight"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weight"
+            android:textColor="@color/grey_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvWeightValue"
+            app:layout_constraintStart_toStartOf="@id/tvWeightValue"
+            app:layout_constraintTop_toBottomOf="@id/tvWeightValue" />
+
+        <TextView
+            android:id="@+id/tvHeightValue"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_padding_size_medium"
+            android:text="@{@string/height_format(model.height)}"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvWeightValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvWeightValue"
+            tools:text="1.1 M" />
+
+        <TextView
+            android:id="@+id/tvHeight"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/height"
+            android:textColor="@color/grey_light"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvWeight"
+            app:layout_constraintEnd_toEndOf="@id/tvHeightValue"
+            app:layout_constraintStart_toStartOf="@id/tvHeightValue" />
+
+        <TextView
+            android:id="@+id/tvHp"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_hp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/barHp"
+            app:layout_constraintStart_toStartOf="@id/barHp"
+            app:layout_constraintTop_toBottomOf="@id/barHp" />
+
+        <TextView
+            android:id="@+id/tvAtk"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_atk"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/barAtk"
+            app:layout_constraintStart_toStartOf="@id/barAtk"
+            app:layout_constraintTop_toBottomOf="@id/barAtk" />
+
+        <TextView
+            android:id="@+id/tvDef"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_def"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/barDef"
+            app:layout_constraintStart_toStartOf="@id/barDef"
+            app:layout_constraintTop_toBottomOf="@id/barDef" />
+
+        <TextView
+            android:id="@+id/tvSpd"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_spd"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/barSpd"
+            app:layout_constraintStart_toStartOf="@id/barSpd"
+            app:layout_constraintTop_toBottomOf="@id/barSpd" />
+
+        <TextView
+            android:id="@+id/tvExp"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_exp"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/barExp"
+            app:layout_constraintStart_toStartOf="@id/barExp"
+            app:layout_constraintTop_toBottomOf="@id/barExp" />
+
+        <com.tonynowater.core.views.BorderBarView
+            android:id="@+id/barHp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_padding_size_medium"
+            android:layout_marginBottom="@dimen/margin_padding_size_medium"
+            app:barValue="@{model.hp}"
+            app:bar_fill_color="@android:color/holo_red_dark"
+            app:bar_stack_orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/barAtk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.tonynowater.core.views.BorderBarView
+            android:id="@+id/barAtk"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barValue="@{model.atk}"
+            app:bar_fill_color="@android:color/holo_purple"
+            app:bar_stack_orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/barHp"
+            app:layout_constraintEnd_toStartOf="@id/barDef"
+            app:layout_constraintStart_toEndOf="@id/barHp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.tonynowater.core.views.BorderBarView
+            android:id="@+id/barDef"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barValue="@{model.def}"
+            app:bar_fill_color="@android:color/holo_green_dark"
+            app:bar_stack_orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/barHp"
+            app:layout_constraintEnd_toStartOf="@id/barSpd"
+            app:layout_constraintStart_toEndOf="@id/barAtk"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.tonynowater.core.views.BorderBarView
+            android:id="@+id/barSpd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barValue="@{model.spd}"
+            app:bar_fill_color="@android:color/holo_blue_light"
+            app:bar_stack_orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/barHp"
+            app:layout_constraintEnd_toStartOf="@id/barExp"
+            app:layout_constraintStart_toEndOf="@id/barDef"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.tonynowater.core.views.BorderBarView
+            android:id="@+id/barExp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/margin_padding_size_medium"
+            app:barValue="@{model.exp}"
+            app:bar_fill_color="@android:color/holo_orange_light"
+            app:bar_stack_orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/barHp"
+            app:layout_constraintEnd_toStartOf="@id/ivRounded"
+            app:layout_constraintStart_toEndOf="@id/barSpd"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isLoading="@{vm.loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
