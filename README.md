@@ -9,8 +9,8 @@ This is a simple app for displaying Pokemons
 - [x] Transition Animation 
 - [x] List entering animation
 - [x] Cache for off-line usage
-- [x] Retrofit2 + Room + Rx 
-- [ ] Retrofit2 + Room + Coroutine
+- [x] [Retrofit2 + Room + Rx](https://github.com/tonynowater87/MyPokedex) 
+- [ ] [Retrofit2 + Room + Coroutine](https://github.com/tonynowater87/MyPokedex/tree/coroutine)
 - [x] Use Koin for DI
 - [ ] Use Hilt for DI
 
