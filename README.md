@@ -16,7 +16,7 @@ This is a simple app for displaying Pokemons
 
 ## Previews
 
-<img src="https://github.com/tonynowater87/MyPokedex/blob/master/previews/vertical_preview.git" width="30%">
+<img src="https://github.com/tonynowater87/MyPokedex/blob/master/previews/vertical_preview.gif" width="30%">
 
 <img src="https://github.com/tonynowater87/MyPokedex/blob/master/previews/horizontal_preview.gif" width="60%">
 
