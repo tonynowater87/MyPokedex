@@ -58,10 +58,6 @@ dependencies {
     implementation Koin.SCOPE
     implementation Koin.VIEWMODEL
 
-    implementation RxJava.ANDROID_FOR_ROOM
-    implementation RxJava.CORE_FOR_ROOM
-    implementation RxJava.KOTLIN_FOR_ROOM
-
     implementation Utils.TIMBER
 
     testImplementation TestDep.JUNIT

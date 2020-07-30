@@ -22,7 +22,6 @@ import org.koin.dsl.module
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val networkModule = module {
@@ -52,8 +51,6 @@ val networkModule = module {
         )
     }
 
-    single<CallAdapter.Factory> { RxJava2CallAdapterFactory.create() }
-
     factory {
 
         OkHttpClient()
@@ -74,7 +71,6 @@ val networkModule = module {
             .Builder()
             .baseUrl("https://pokeapi.co/api/v2/")
             .addConverterFactory(get(named("moshi")))
-            .addCallAdapterFactory(get())
             .client(get())
             .build()
     }

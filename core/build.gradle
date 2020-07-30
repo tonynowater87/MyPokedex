@@ -55,19 +55,13 @@ dependencies {
     implementation Google.MATERIAL
     implementation Google.ROOM
     implementation Google.ROOM_KTX
-    implementation Google.ROOM_RXJAVA2
     kapt Google.ROOM_COMPILER
 
     implementation Koin.ANDROID
     implementation Koin.SCOPE
     implementation Koin.VIEWMODEL
 
-    implementation RxJava.ANDROID_FOR_ROOM
-    implementation RxJava.CORE_FOR_ROOM
-    implementation RxJava.KOTLIN_FOR_ROOM
-
     implementation Retrofit.CORE
-    implementation Retrofit.RXJAVA2
     implementation Retrofit.MOSHI
     implementation Retrofit.OKHTTP_INTERCEPTOR
 

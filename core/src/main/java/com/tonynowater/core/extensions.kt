@@ -28,6 +28,9 @@ import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.google.firebase.analytics.FirebaseAnalytics
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 // change system status bar's color
 fun AppCompatActivity.changeStatusBarColor(color: Int = getColor(R.color.colorPrimary)) {
@@ -170,3 +173,5 @@ fun RecyclerView.disableItemAnimator() {
         }
     }
 }
+
+fun <T> Flow<T>.onIO() = flowOn(Dispatchers.IO)

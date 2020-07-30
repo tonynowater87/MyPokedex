@@ -5,13 +5,19 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.viewModelScope
 import com.tonynowater.core.base.BaseViewModel
+import com.tonynowater.core.onIO
 import com.tonynowater.core.repository.ResourceRepository
 import com.tonynowater.core.repository.database.entity.PokemonEntity
 import com.tonynowater.core.repository.network.Resource
 import com.tonynowater.core.utils.LoadMoreInterface
 import com.tonynowater.mypokedex.R
-import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokemonListViewModel(
@@ -55,13 +61,19 @@ class PokemonListViewModel(
 
     private fun loadMore(page: Int) {
 
-        Timber.d("[DEBUG] [loadMore] [page = $page]")
+        viewModelScope.launch {
 
-        repository.getPokemonList(page)
-            .compose(applySchedulers())
-            .doOnSubscribe { loading.value = true }
-            .subscribeBy(
-                onNext = {
+            Timber.d("[DEBUG] [loadMore] [page = $page]")
+
+            repository.getPokemonList(page)
+                .onStart { loading.postValue(true) }
+                .onCompletion { loading.postValue(false) }
+                .catch {
+                    loading.postValue(false)
+                    _isError.postValue(true)
+                }
+                .onIO()
+                .collect {
                     if (!isError()) {
                         val originPokemonList = pokemonList.value?.extract() ?: mutableListOf()
                         _pokemonList.postValue(
@@ -72,14 +84,7 @@ class PokemonListViewModel(
                                     .toList())
                         )
                     }
-                }, onError = {
-                    loading.value = false
-                    _isError.value = true
-                },
-                onComplete = {
-                    loading.value = false
                 }
-            )
-            .also { compositeDisposable.add(it) }
+        }
     }
 }
